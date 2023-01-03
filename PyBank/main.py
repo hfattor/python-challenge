@@ -1,7 +1,7 @@
 import os
 import csv
 
-
+#Variables
 pl_current = 0
 pl_change = 0
 pl_change_total = 0
@@ -13,17 +13,17 @@ holder = 0
 pl_total = 0
 holder2 = 0
 
-# Path to collect data from the Resources folder
-pybank_csv = './Resources/budget_data.csv'
+#Path to collect data from the Resources folder
+pybank_csv = os.path.join("Resources", "budget_data.csv")
 
 with open(pybank_csv, 'r') as csvfile:
 
-# Split the data on commas
+#Split the data on commas
     csvreader = csv.reader(csvfile, delimiter=',')
 
     header = next(csvreader)
 
-# Loop through the data
+#Loop through the data
     for row in csvreader:
         date = str(row[0])
         pl = float(row[1])
@@ -59,7 +59,9 @@ with open(pybank_csv, 'r') as csvfile:
             
         holder2 = float(pl_current)
     
-    pl_average = round(float(pl_change_total) / int(month_total), 2) 
+    pl_average = round(float(pl_change_total) / int(month_total - 1), 2) 
+
+#Print to terminal
 
     print(f'Financial Analysis')
     print(f'--------------------------')
@@ -69,13 +71,12 @@ with open(pybank_csv, 'r') as csvfile:
     print(f'Greatest Increase in profits: {date_current_pos} ${pl_pos_change}')
     print(f'Greatest Loss in profits: {date_current_neg} ${pl_neg_change}')
 
-
 #Export as text file
 
-# Set variable for output file
-output_file = os.path.join("pybank_final.txt")
+#Set variable for output file
+output_file = os.path.join("Analysis", "pybank_final.txt")
 
-#  Open the output file
+#Open the output file, write above, close file
 with open(output_file, "w") as datafile:
     datafile.write("Financial Analysis \n")
     datafile.write("-------------------------- \n")
