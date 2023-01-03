@@ -66,5 +66,5 @@ with open(output_file, "w") as datafile:
     for votee, value in candidate_list.items():
         datafile.write(f'{votee}: {round((value/vote_total) *100, 3)}% ({value}) \n')
     datafile.write("-------------------------- \n")
-    datafile.write(f'Winner: {winner}) \n')
+    datafile.write(f'Winner: {winner} \n')
     datafile.close
